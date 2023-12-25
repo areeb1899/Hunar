@@ -1,0 +1,36 @@
+<% layout('layout/boilerplate') -%>
+
+    <div class="container mt-5">
+        <div class="card custom-card mx-auto" style="width: 400px;">
+            <!-- Adjusted width to 200px -->
+            <img src="<%=listing.image%>" class="card-img-top p-3 mx-auto" alt="..."
+                style="height: 300px; object-fit: cover; width: 200px;">
+            <!-- Adjusted width to 200px -->
+            <div class="card-body">
+                <h6 class="card-title">
+                    <%=listing.name%>
+                </h6>
+                <p class="card-text">
+                    <%=listing.description %>
+                </p>
+                <p class="card-text">
+                    <b>&#8377;<%=listing.price %></b>
+                </p>
+                <% if (currentUser && listing.author.equals(currentUser._id)) { %>
+                    <a href="/listing/<%=listing._id%>/edit" class="btn btn-md btn-secondary">Edit</a>
+                    <form class="d-inline-block" action="/listing/<%=listing._id%>?_method=DELETE" method="post">
+                        <button type="submit" class="btn btn-md btn-danger m-3">Delete</button>
+                    </form>
+                   
+                    <% } else { %>
+                        <a href="#" class="btn btn-md bg-info btn-sm">Buy Now</a>
+                        <!-- Add to cart feature  -->
+                        <form class="d-inline-block" action="/cart/<%=listing._id%>" method="post">
+                            <button class="btn btn-sm btn-success">Add to Cart</button>
+                        </form>
+                        <% }%>
+
+
+            </div>
+        </div>
+    </div>

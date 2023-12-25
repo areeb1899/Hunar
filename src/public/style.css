@@ -1,0 +1,185 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+ background: url('https://www.dhlindustries.com/wp-content/uploads/2020/04/Silk-Cloth.jpg');
+ /* background-repeat: no-repeat; */
+ background-size: cover;
+}
+
+/* ---------------  */
+
+.logo {
+    width: 10%;
+}
+
+.nav-item {
+    width: 100px;
+    /* border: 2px solid black; */
+}
+
+/* landing page css  */
+.features {
+    padding: 50px 0;
+}
+
+.feature {
+    text-align: center;
+}
+
+.feature img {
+    width: 100%;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 15px 0;
+}
+
+
+/* footer css  */
+.footer a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer ul li {
+    margin-bottom: 5px;
+}
+
+.footer h5 {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+footer a {
+    text-decoration: none;
+    color: white;
+}
+
+.footer form button {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+
+/* show card css */
+
+.custom-card {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.custom-card:hover {
+    transform: scale(1.05);
+}
+
+
+
+
+
+
+/* sign up form css  */
+
+.custom-container {
+    width: 400px;
+    margin: 50px auto;
+    background-color: rgba(245, 245, 245, 0.6);
+    border: 1px solid #ccc;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.custom-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #ff385c;
+}
+
+.custom-form-group {
+    margin-bottom: 15px;
+}
+
+.custom-form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.custom-button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.custom-button:hover {
+    background-color: #0069d9;
+}
+
+.custom-gradient {
+    background-color: #ff3c5f;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+
+/* Go back button  */
+.goback-btn {
+    padding: 10px 20px;
+    display: inline-block;
+    background-color: #007bff;
+    border-radius: 5px;
+    font-size: 16px;
+    margin: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.goback-btn a {
+    text-decoration: none;
+    color: white
+}
+
+.goback-btn:hover {
+    background-color: #0056b3;
+}
+
+.image-section {
+    position: relative;
+    margin-top: -50px;
+  
+}
+.launching-para {
+    position: absolute;
+    font-size: 100px;
+    color: white;
+    bottom: 320px;
+    left: 170px;
+    font-family: 'Cairo', sans-serif;
+    font-family: 'Dancing Script', cursive;
+    font-family: 'Nunito', sans-serif;
+    font-family: 'Oswald', sans-serif;
+    font-family: 'Poppins', sans-serif;
+    font-family: 'Rubik', sans-serif;
+    font-family: 'Satisfy', cursive;
+    font-family: 'Source Code Pro', monospace;
+    font-family: 'Ubuntu', sans-serif;
+    
+}

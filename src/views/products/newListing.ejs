@@ -1,0 +1,48 @@
+<% layout('layout/boilerplate') -%>
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+
+                <form method="post" action="/listing">
+                    <h2 class="mb-4">Add a new listing</h2>
+
+                    <!-- Name Input -->
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" name="name" class="form-control" id="name" placeholder="Enter name"
+                            required="true">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="image" class="form-label">Image</label>
+                        <input type="text" name="image" class="form-control" id="name" placeholder="Enter the URL"
+                            required="true">
+                    </div>
+
+                    <!-- Kilometers Away Input -->
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        <input type="text" class="form-control" id="description" name="description"
+                            placeholder="Enter the description" required="true">
+                    </div>
+
+                    <!-- Date Input -->
+                    <!-- <div class="mb-3">
+                        <label for="date" class="form-label">Date</label>
+                        <input type="date" name="date" class="form-control" id="date">
+                    </div> -->
+
+                    <!-- Price Input -->
+                    <div class="mb-3">
+                        <label for="price" class="form-label">Price &#8377;</label>
+                        <input type="text" name="price" class="form-control" id="price" placeholder="Enter the price">
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+
+            </div>
+        </div>
+    </div>

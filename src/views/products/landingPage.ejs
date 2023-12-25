@@ -1,0 +1,160 @@
+<% layout ('layout/boilerPlate') -%>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo&family=Nunito&family=Oswald&family=Poppins:ital,wght@0,100;1,100&family=Rubik&family=Source+Code+Pro:ital,wght@1,300&family=Ubuntu&display=swap"
+        rel="stylesheet">
+
+    <section class="features">
+        <div class="image-section">
+            <img src="assets/image-1.jpg" width="100%" height="700px" alt="">
+            <p class="launching-para">We are launching soon!</p>
+        </div>
+
+
+
+        <!-- carousel  -->
+        <div class="container mt-1">
+            <div id="carouselExampleIndicators" class="carousel slide">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+                        class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="assets/indian.jpg" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="assets/western.jpeg" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="assets/south-indian.jpg" class="d-block w-100" alt="...">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+
+
+        <!-- two image section  -->
+
+        <div class="container overflow-hidden bg-secondary-subtle text-center my-3">
+            <div class="row gx-5">
+                <div class="col">
+                    <div class="p-3"><img src="assets/image-2.jpg" class="img-fluid w-100" alt=""></div>
+                </div>
+                <div class="col">
+                    <div class="p-3"> <img src="assets/image-3.jpg" class="img-fluid w-100" alt=""></div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- cards carousel align in same block  -->
+
+        <div id="imageCardCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="card">
+                                    <img src="assets/card-1.jpg" class="card-img-top" alt="Card 1">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card">
+                                    <img src="assets/card-2.jpg" class="card-img-top" alt="Card 2">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card">
+                                    <img src="assets/card-3.jpg" class="card-img-top" alt="Card 3">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card">
+                                    <img src="assets/card-4.jpg" class="card-img-top" alt="Card 4">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="card">
+                                    <img src="assets/card-5.jpg" class="card-img-top" alt="Card 5">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card">
+                                    <img src="assets/card-6.jpg" class="card-img-top" alt="Card 6">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card">
+                                    <img src="assets/card-7.jpg" class="card-img-top" alt="Card 7">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card">
+                                    <img src="assets/card-8.jpg" class="card-img-top" alt="Card 8">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#imageCardCarousel"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#imageCardCarousel"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+
+
+
+       
+       
+    </section>
+
+    
+    <!-- clicking on each card redirects to listing route  -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Get the carousel element by its ID
+            var carousel = document.getElementById('imageCardCarousel');
+
+            // Get all the cards within the carousel
+            var cards = carousel.querySelectorAll('.carousel-item .card');
+
+            // Attach a click event listener to each card
+            cards.forEach(function (card) {
+                card.addEventListener('click', function () {
+                    // Make a GET request to the /listing route
+                    window.location.href = '/listing';
+                });
+            });
+        });
+    </script>

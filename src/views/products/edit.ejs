@@ -1,0 +1,29 @@
+<%  layout('layout/boilerPlate') -%>
+
+<main class="container mt-5 border w-75 p-3">
+    <h1>Edit listing</h1>
+    <form action="/listing/<%=listing._id%>?_method=PATCH" method="post">
+        <div class="mb-3">
+            <label class="form-label" for="name">Name</label>
+            <input class="form-control" type="text" name="name" id="name" placeholder="Name"
+                value="<%= listing.name %>">
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="image">Image</label>
+            <input class="form-control" type="text" name="image" id="price" placeholder="Image URL"
+                value="<%= listing.image %>">
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="description">Description</label>
+            <input class="form-control" type="text" name="description" id="imageUrl" placeholder="description"
+                value="<%= listing.description %>">
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="price">Price &#8377;</label>
+            <input class="form-control" type="text" name="price" id="imageUrl" placeholder="Price"
+                value="<%= listing.price %>">
+        </div>
+        </div>
+        <button class="btn btn-sm btn-dark">Update</button>
+    </form>
+</main>
