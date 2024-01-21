@@ -1,49 +1,108 @@
 <% layout('layout/boilerplate') -%>
 
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header text-white bg-primary">
-                    <h4 class="mb-0">Sign Up</h4>
-                </div>
-                <div class="card-body" style="background-color: white;">
-                    <form method="post" action="/register">
-                        <div class="form-group mb-3">
-                            <label for="username">Username</label>
-                            <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username">
-                        </div>
-                        <div class="form-group mb-3">
-                            <label for="email">Email</label>
-                            <input type="email" class="form-control" name="email" id="email" placeholder="Enter your email">
-                        </div>
-                        <div class="form-group mb-3">
-                            <label for="password">Password</label>
-                            <input type="password" class="form-control" name="password" id="password" placeholder="Enter your password">
-                        </div>
-                        <div class="mb-3">
-                            <p>Register as</p>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="role" id="seller" value="seller">
-                                <label class="form-check-label" for="seller">
-                                  Seller
-                                </label>
-                              </div>
-                              <div class="form-check">
-                                <input class="form-check-input" type="radio" name="role" id="buyer" checked value="buyer">
-                                <label class="form-check-label" for="buyer">
-                                  Buyer
-                                </label>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-primary text-light">Sign Up</button>
+    <style>
+        .card {
+            background-color: #000;
+            color: #fff;
+        }
 
-                        <div class="mb-3">
-                            <p>Already have an account ? <a href="/login">Login</a> </p>
+        .card-header {
+            background-color: var(--red);
+        }
+
+        .card-body {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .form-control {
+            background-color: #f8f9fa;
+            color: var(--black);
+        }
+
+        .form-check-input {
+            background-color: #f8f9fa;
+        }
+
+        .btn-primary {
+            background-color: var(--red);
+        }
+
+        a {
+            color: var(--red);
+            /* Red color for links */
+        }
+    </style>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header text-white">
+                        <h4 class="mb-0">Sign Up</h4>
+                    </div>
+                    <div class="card-body" style="background-color: white;">
+                        <form method="post" action="/register">
+                            <div class="form-group mb-3">
+                                <label for="name">Name</label>
+                                <input type="text" class="form-control" name="name" id="name"
+                                    placeholder="Enter your name" required>
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label for="username">Username</label>
+                                <input type="text" class="form-control" id="username" name="username"
+                                    placeholder="Enter your username" required>
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control" name="email" id="email"
+                                    placeholder="Enter your email" required>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control" name="password" id="password"
+                                    placeholder="Enter your password" required>
+                            </div>
+                            <div class="mb-3">
+                                <p>Register as</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="role" id="seller" value="seller">
+                                    <label class="form-check-label" for="seller">
+                                        Seller:
+                                    </label>
+                                    <label for="secret"></label>
+                                    <input class="border border-2 rounded-2 p-1" type="text" id="secret" name="secret" placeholder="password to sign up as a seller">
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="role" id="buyer" checked
+                                        value="buyer">
+                                    <label class="form-check-label" for="buyer">
+                                        Buyer
+                                    </label>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary text-light">Sign Up</button>
+
+                            <div class="mb-3">
+                                <p>Already have an account ? <a href="/login">Login</a> </p>
+                            </div>
+                        </form>
+                    </div>
+                   
+
+                </div>
+                <div class="col mt-2">
+                    <div class="card">
+                        <div class="card-body">
+                            <a href="/auth/google" role="button" class="btn btn-block">
+                                <i class="bi bi-google"></i>
+                                Sign Up with Google
+                            </a>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
+       
     </div>
-</div>

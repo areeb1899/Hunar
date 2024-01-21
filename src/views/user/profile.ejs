@@ -1,0 +1,93 @@
+<% layout('layout/boilerPlate')-%>
+
+  <div class="container profile-container mt-5">
+    <div class="text-center">
+      <h2>
+        <%= currentUser.name.charAt(0).toUpperCase() + currentUser.name.slice(1) %>
+      </h2>
+
+    </div>
+
+    <hr>
+
+
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title fw-bold">User Information</h5>
+
+            <p class="card-text">Name: <%=currentUser.name %>
+            </p>
+            <p class="card-text">Email: <%=currentUser.email %>
+            </p>
+            <p class="card-text">Role: <%=currentUser.role %>
+            </p>
+
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title fw-bold">NEWSLETTERS</h5>
+            <p class="card-text">You are currently not subscribed to any newsletter.
+
+            </p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="table-responsive border border-2 border-radius rounded-2">
+        <table class="table table-sm">
+
+          <thead>
+            <tr>
+              <th scope="col">Item</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">&#8377; Price </th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for (let cartItem of cart) { %>
+              <tr>
+                <td>
+                  <a class="text-decoration-none text-dark" href="/listing/<%=cartItem.listingId %>">
+                    <%=cartItem.name.substring(0,25) %>..
+                  </a>
+                </td>
+                <td>
+                  <%=cartItem.qty %>
+                </td>
+                <td>
+                  <%=cartItem.price*cartItem.qty %>
+                </td>
+              </tr>
+
+
+          </tbody>
+          <% } %>
+
+        </table>
+        <div>
+          <h3> Total Cart Amount: &#8377; <%=totalCartAmount %>
+          </h3>
+        </div>
+        
+      </div>
+
+
+
+     
+      <div class="col-lg-2">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Delete Your Account</h5>
+            <form action="/users/<%= currentUser._id %>?_method=DELETE" method="post">
+              <button class="btn btn-lg btn-danger"
+                onclick="return confirm('Are you sure you want to delete your account?')"><i class="bi bi-trash3"></i></button>
+            </form>
+          </div>
+        </div>
+      </div>

@@ -1,29 +1,80 @@
 <% layout('layout/boilerplate') -%>
 
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header bg-primary text-white">
-                    <h4 class="mb-0">Login</h4>
+
+
+    <style>
+        .card {
+            color: #fff;
+        }
+
+        .card-header {
+            background-color: var(--red);
+            color: #fff;
+        }
+
+        .btn-primary {
+            background-color: var(--red);
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--red);
+        }
+
+        .form-control {
+            background-color: #f8f9fa;
+            color: var(--black);
+        }
+
+        a {
+            color: var(--red);
+        }
+
+        .social-block .card-body a:hover {
+            color: #000 !important;
+            /* Use !important to ensure the styles override Bootstrap's default styles */
+        }
+        
+    </style>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header text-white">
+                        <h4 class="mb-0">Login</h4>
+                    </div>
+                    <div class="card-body">
+                        <form method="post" action="/login">
+                            <div class="form-group mb-3 text-dark">
+                                <label for="username">Username</label>
+                                <input type="text" class="form-control" id="username" name="username"
+                                    placeholder="Enter your username" required>
+                            </div>
+                            <div class="form-group mb-3 text-dark">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control" id="password" name="password"
+                                    placeholder="Enter your password" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary mb-4">Login</button>
+                            <div class="mb-3 text-dark">
+                                <p>New user ? <a href="/register">Register</a> </p>
+                            </div>
+                        </form>
+                    </div>
+
+
                 </div>
-                <div class="card-body">
-                    <form method="post" action="/login">
-                        <div class="form-group mb-3">
-                            <label for="username">Username</label>
-                            <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username" required>
+                <div class="col mt-2">
+                    <div class="card social-block">
+                        <div class="card-body">
+                            <a href="/auth/google" role="button" class="btn btn-block">
+                                <i class="bi bi-google"></i>
+                                Sign In with Google
+                            </a>
                         </div>
-                        <div class="form-group mb-3">
-                            <label for="password">Password</label>
-                            <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Login</button>
-                        <div class="mb-3">
-                            <p>New user ? <a href="/register">Register</a> </p>
-                        </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
+
     </div>
-</div>

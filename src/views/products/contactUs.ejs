@@ -1,36 +1,48 @@
 <% layout('layout/boilerPlate')-%>
 
-<div class="container mt-5">
-    <h2>Contact Us</h2>
-    <p>We'd love to hear from you. Please fill out the form below to get in touch with us.</p>
+    <section class="container">
+        <div class="container mt-5">
+            <h2>Contact Us</h2>
+            <p>We'd love to hear from you. Please fill out the form below to get in touch with us.</p>
 
-    <form>
-        <div class="mb-3">
-            <label for="name" class="form-label">Your Name</label>
-            <input type="text" class="form-control" id="name" placeholder="Enter your name">
+            <form action="/contact" method="post">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Your Name</label>
+                    <input type="text" class="form-control w-50" name="name" id="name" placeholder="Enter your name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Your Email</label>
+                    <input type="email" class="form-control w-50" name="email" id="email" placeholder="Enter your email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="message" class="form-label">Message</label>
+                    <textarea class="form-control w-50" id="message" rows="4"
+                        placeholder="Enter your message" required></textarea>
+                </div>
+                
+                <button type="submit" class="btn text-white" style="background-color: var(--red);">Submit</button>
+            </form>
         </div>
-        <div class="mb-3">
-            <label for="email" class="form-label">Your Email</label>
-            <input type="email" class="form-control" id="email" placeholder="Enter your email">
+
+        <div class="container mt-5">
+            <h2>Our Location</h2>
+            <p>You can also visit us at the following address:</p>
+
+            <address>
+                Shankar Market, 50, Connaught Circus, <br>
+                Connaught Lane, Barakhamba, <br>
+                New Delhi, Delhi 110001
+            </address>
+
+            <p>Email: Hunar@gmail.com<br>
+                Phone: +91 95821 76784</p>
         </div>
-        <div class="mb-3">
-            <label for="message" class="form-label">Message</label>
-            <textarea class="form-control" id="message" rows="4" placeholder="Enter your message"></textarea>
+
+        <div class="map-container">
+            <iframe class="border border-3"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3501.8632656546292!2d77.22121247375267!3d28.63385988402351!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd30c96e03fb%3A0x7e984a9932b5250d!2sHunar!5e0!3m2!1sen!2sin!4v1705491050879!5m2!1sen!2sin"
+                width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-</div>
 
-<div class="container mt-5">
-    <h2>Our Location</h2>
-    <p>You can also visit us at the following address:</p>
-
-    <address>
-        123 Main Street<br>
-        Cityville, State 12345<br>
-        India
-    </address>
-
-    <p>Email: Hunar@gmail.com<br>
-        Phone: +91 98658 26457</p>
-</div>
+    </section>

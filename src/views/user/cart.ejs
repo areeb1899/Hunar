@@ -1,38 +1,69 @@
-<%  layout('layout/boilerplate')-%>;
+<% layout('layout/boilerplate')-%>
 
-<section class="container">
-  <h1 class="display-6">My Cart</h1>
+  <section class="container">
+    <h1 class="display-6">My Cart</h1>
+    <% if (cart.length===0) { %>
+      <div style="display: inline-block;">
+        <h4>No items in your Cart</h4>
+      </div>
+      
+      <% } %>
     <div class="row">
-        <div class="col-lg-8"></div>
-            
-            <% for(let cartItem of cart){%>
-                <div class="card mx-auto mb-3" style="max-width: 540px;">
-                    <div class="row g-0">
-                      <div class="col-4">
-                       <a href="/listing/<%=cartItem._id%>"> <img src="<%=cartItem.image%>" class="img-fluid rounded-start" alt="..."></a>
-                      </div>
-                      <div class="col-8">
-                        <div class="card-body">
-                          <h5 class="card-title"><%=cartItem.name%></h5>
-                          <p class="card-text">Price : $ <%=cartItem.price%></p>
-                          <p class="card-text">Quantity : <%=cartItem.qty%></p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-            <%} %> 
-        </div>
-        <div class="col-lg-4">
-            <ul class="list-group">
-                    <%for(const cartItem of cart){%>
-                        <li class="list-group-item"><span class="fw-bold"> <%=cartItem.name%>  - </span>$ <%=cartItem.price%>  x  <span> <%=cartItem.qty%></span></li>
-                    <%}%>
-            </ul>
-           <form action="#" class="mt-2">
-            <button class="btn btn-sm btn-success">Checkout</button>
-           </form>
-        </div>
-    </div>
+      <div class="col-lg-8">
+        <% for (let cartItem of cart) { %>
+          <div class="card mb-3">
+            <div class="row g-0">
+              <div class="col-md-3">
+                <a href="/listing/<%= cartItem.listingId %>">
+                  <img src="<%= cartItem.image %>" class="img-fluid rounded-start" alt="...">
+                </a>
+              </div>
+              <div class="col-md-9">
+                <div class="card-body">
+                  <h5 class="card-title">
+                    <%= cartItem.name %>
+                  </h5>
+                  <p class="card-text">Price: &#8377;<%= cartItem.price %>
+                  </p>
+                  <p class="card-text">Quantity: <%= cartItem.qty %>
+                  </p>
+                  <form action="/cart/<%= cartItem.listingId %>?_method=DELETE" method="POST">
+                    <button type="submit" class="btn btn-danger">Remove</button>
+                  </form>
+                 
+                </div>
+              </div>
+            </div>
+          </div>
+          <% } %>
+      </div>
 
-   
-</section>
+      <div class="col-lg-4">
+
+        <ul class="list-group">
+          <% for (let cartItem of cart) { %>
+            <li class="list-group-item">
+              <span class="fw-bold">
+                <%= cartItem.name %> -
+              </span>&#8377; <%= cartItem.price %> x <span>
+                  <%= cartItem.qty %>
+                </span>
+            </li>
+            <% } %>
+        </ul>
+        <div class="card mt-3">
+          <div class="card-body">
+            <h4 class="card-title">Total Cart Amount: &#8377;<%= totalCartAmount %>
+            </h4>
+          </div>
+        </div>
+
+
+        <form action="#" class="mt-2">
+          <button class="btn btn-sm btn-success">Checkout</button>
+        </form>
+
+      </div>
+    </div>
+  </section>
+

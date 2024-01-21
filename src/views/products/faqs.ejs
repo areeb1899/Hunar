@@ -1,131 +1,155 @@
 <% layout('layout/boilerPlate')-%>
+    <style>
+      
 
+        .accordion-item {
+            background-color: #000;
+            color: #fff;
+        }
 
-<div class="container mt-5">
-    <h2>Frequently Asked Questions</h2>
+        .accordion-button {
+            background-color: rgb(255, 48, 48);
+            /* Red color */
+            color: #fff;
+        }
 
-    <div class="accordion m-5" id="faqAccordion">
+        .accordion-collapse {
+            background-color: #000000;
+            /* Dark background for collapsed content */
+        }
 
-        <!-- FAQ Item 1 -->
-        <div class="accordion-item m-4 rounded">
-            <h2 class="accordion-header" id="headingOne">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    Question 1: What payment methods do you accept?
-                </button>
-            </h2>
-            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
-                data-bs-parent="#faqAccordion">
-                <div class="accordion-body">
-                    We accept various payment methods, including credit/debit cards, PayPal, and bank
-                    transfers. You can choose the preferred payment option during the checkout process.
+        .accordion-body {
+            color: #fff;
+        }
+        .accordion-button:not(.collapsed) {
+        background-color: rgb(255, 48, 48); /* Red color for opened state */
+    }
+    </style>
+    <div class="container mt-5">
+        <h2>Frequently Asked Questions</h2>
+
+        <div class="accordion m-5" id="faqAccordion">
+
+            <!-- FAQ Item 1 -->
+            <div class="accordion-item m-4 rounded">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Question 1: What payment methods do you accept?
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        We accept various payment methods, including credit/debit cards, PayPal, and bank
+                        transfers. You can choose the preferred payment option during the checkout process.
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- FAQ Item 2 -->
-        <div class="accordion-item m-4 rounded">
-            <h2 class="accordion-header" id="headingTwo">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    Question 2: How can I place an order?
-                </button>
-            </h2>
-            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
-                data-bs-parent="#faqAccordion">
-                <div class="accordion-body">
-                    To place an order, visit our website, browse the products, and add them to your
-                    cart. Follow the checkout process to complete your order.
+            <!-- FAQ Item 2 -->
+            <div class="accordion-item m-4 rounded">
+                <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Question 2: How can I place an order?
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        To place an order, visit our website, browse the products, and add them to your
+                        cart. Follow the checkout process to complete your order.
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- FAQ Item 3 -->
-        <div class="accordion-item m-4 rounded">
-            <h2 class="accordion-header" id="headingThree">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                    Question 3: How can I track my order?
-                </button>
-            </h2>
-            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
-                data-bs-parent="#faqAccordion">
-                <div class="accordion-body">
-                    Once your order is shipped, you will receive a tracking number via email. You can
-                    use this tracking number on our website to monitor the status and location of your shipment.
+            <!-- FAQ Item 3 -->
+            <div class="accordion-item m-4 rounded">
+                <h2 class="accordion-header" id="headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Question 3: How can I track my order?
+                    </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Once your order is shipped, you will receive a tracking number via email. You can
+                        use this tracking number on our website to monitor the status and location of your shipment.
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- FAQ Item 4 -->
-        <div class="accordion-item m-4 rounded">
-            <h2 class="accordion-header" id="headingFour">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                    Question 4: What is your return policy?
-                </button>
-            </h2>
-            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
-                data-bs-parent="#faqAccordion">
-                <div class="accordion-body">
-                    We offer a 30-day return policy. If you are not satisfied with your purchase, you
-                    can initiate a return within 30 days of the purchase date. Please refer to our Returns and
-                    Exchanges page for more details.
+            <!-- FAQ Item 4 -->
+            <div class="accordion-item m-4 rounded">
+                <h2 class="accordion-header" id="headingFour">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        Question 4: What is your return policy?
+                    </button>
+                </h2>
+                <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        We offer a 30-day return policy. If you are not satisfied with your purchase, you
+                        can initiate a return within 30 days of the purchase date. Please refer to our Returns and
+                        Exchanges page for more details.
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- FAQ Item 5 -->
-        <div class="accordion-item m-4 rounded">
-            <h2 class="accordion-header" id="headingFive">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                    Question 5: How do I reset my password?
-                </button>
-            </h2>
-            <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
-                data-bs-parent="#faqAccordion">
-                <div class="accordion-body">
-                    To reset your password, visit the login page and click on the "Forgot Password"
-                    link. Follow the instructions sent to your email to reset your password.
+            <!-- FAQ Item 5 -->
+            <div class="accordion-item m-4 rounded">
+                <h2 class="accordion-header" id="headingFive">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                        Question 5: How do I reset my password?
+                    </button>
+                </h2>
+                <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        To reset your password, visit the login page and click on the "Forgot Password"
+                        link. Follow the instructions sent to your email to reset your password.
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- FAQ Item 6 -->
-        <div class="accordion-item m-4 rounded">
-            <h2 class="accordion-header" id="headingSix">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-                    Question 6: Do you ship internationally?
-                </button>
-            </h2>
-            <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix"
-                data-bs-parent="#faqAccordion">
-                <div class="accordion-body">
-                    Yes, we offer international shipping. Shipping costs and delivery times may vary
-                    based on your location. Please check our Shipping Information page for more details.
+            <!-- FAQ Item 6 -->
+            <div class="accordion-item m-4 rounded">
+                <h2 class="accordion-header" id="headingSix">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                        Question 6: Do you ship internationally?
+                    </button>
+                </h2>
+                <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Yes, we offer international shipping. Shipping costs and delivery times may vary
+                        based on your location. Please check our Shipping Information page for more details.
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- FAQ Item 7 -->
-        <div class="accordion-item m-4 rounded">
-            <h2 class="accordion-header" id="headingSeven">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
-                    Question 7: Can I modify or cancel my order after placing it?
-                </button>
-            </h2>
-            <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven"
-                data-bs-parent="#faqAccordion">
-                <div class="accordion-body">
-                    Once an order is placed, it enters our processing system quickly. Therefore, we
-                    recommend reviewing your order carefully before confirming the purchase. Unfortunately, we
-                    cannot guarantee modifications or cancellations after the order is processed.
+            <!-- FAQ Item 7 -->
+            <div class="accordion-item m-4 rounded">
+                <h2 class="accordion-header" id="headingSeven">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                        Question 7: Can I modify or cancel my order after placing it?
+                    </button>
+                </h2>
+                <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Once an order is placed, it enters our processing system quickly. Therefore, we
+                        recommend reviewing your order carefully before confirming the purchase. Unfortunately, we
+                        cannot guarantee modifications or cancellations after the order is processed.
+                    </div>
                 </div>
             </div>
-        </div>
 
+        </div>
     </div>
-</div>

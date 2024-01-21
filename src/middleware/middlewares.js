@@ -1,6 +1,6 @@
 const Product = require('../models/Product')
 
-const isLoggedIn = (req, res, next) => {
+const isLoggedIn = (req, res, next) => { 
     if (!req.isAuthenticated()) {
         req.flash('error', 'You need to login first!')
         return res.redirect('/login');

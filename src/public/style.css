@@ -4,50 +4,109 @@
     box-sizing: border-box;
 }
 
-body{
- background: url('https://www.dhlindustries.com/wp-content/uploads/2020/04/Silk-Cloth.jpg');
- /* background-repeat: no-repeat; */
- background-size: cover;
+textarea {
+    resize: none;
 }
 
-/* ---------------  */
-
-.logo {
-    width: 10%;
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    overflow-x: hidden;
+    /* overflow-y: hidden; */
 }
 
-.nav-item {
-    width: 100px;
-    /* border: 2px solid black; */
+:root {
+    --red: #EC0000;
+    --black: #000000;
+}
+
+
+/* navbar  */
+
+.logo_img {
+    width: 10rem;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    background-color: #000000;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 1rem;
+}
+
+.nav_links a {
+    text-decoration: none;
+    color: white;
+    padding: 0.5rem;
+    margin: 0.5rem;
+    font-weight: bold;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link:hover i {
+  color: red !important; /* Use !important to ensure the styles override Bootstrap's default styles */
+}
+
+
+.navbar-toggler-icon {
+    background-color: white !important;
+    border-radius: 5px;
 }
 
 /* landing page css  */
-.features {
-    padding: 50px 0;
-}
 
-.feature {
+
+.image-section {
+    position: relative;
     text-align: center;
+    margin-top: 0;
 }
 
-.feature img {
+.image-section img {
     width: 100%;
-    border-radius: 5px;
-    margin-bottom: 20px;
+    height: auto;
 }
 
-footer {
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 15px 0;
+.launching-para {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 3rem;
+    font-weight: bold;
 }
 
 
 /* footer css  */
+footer {
+    background-color: #000000 !important;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+}
+
+.img-fluid {
+    filter: grayscale(100%);
+    transition: filter 300ms ease-in-out;
+}
+
+.img-fluid:hover {
+    filter: none;
+}
+
+footer {
+    background-color: #0B5ED7;
+}
+
 .footer a {
     color: #fff;
     text-decoration: none;
+}
+
+footer a:hover {
+    color: red !important;
 }
 
 .footer ul li {
@@ -64,10 +123,7 @@ footer a {
     color: white;
 }
 
-.footer form button {
-    background-color: #007bff;
-    border-color: #007bff;
-}
+
 
 
 /* show card css */
@@ -86,58 +142,6 @@ footer a {
 
 
 
-
-
-
-/* sign up form css  */
-
-.custom-container {
-    width: 400px;
-    margin: 50px auto;
-    background-color: rgba(245, 245, 245, 0.6);
-    border: 1px solid #ccc;
-    padding: 30px;
-    border-radius: 10px;
-}
-
-.custom-container h1 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #ff385c;
-}
-
-.custom-form-group {
-    margin-bottom: 15px;
-}
-
-.custom-form-control {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.custom-button {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-.custom-button:hover {
-    background-color: #0069d9;
-}
-
-.custom-gradient {
-    background-color: #ff3c5f;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-}
 
 
 /* Go back button  */
@@ -161,25 +165,49 @@ footer a {
     background-color: #0056b3;
 }
 
-.image-section {
-    position: relative;
-    margin-top: -50px;
-  
+
+
+
+/* Media queries  */
+@media (max-width: 650px) {
+    .nav_links {
+        display: flex;
+        flex-direction: column;
+        /* margin-block:-40px; */
+    }
+
+    .container {
+        width: 400px !important;
+    }
+
+    .map-container iframe {
+        width: 300px;
+        height: 200px;
+    }
 }
-.launching-para {
-    position: absolute;
-    font-size: 100px;
-    color: white;
-    bottom: 320px;
-    left: 170px;
-    font-family: 'Cairo', sans-serif;
-    font-family: 'Dancing Script', cursive;
-    font-family: 'Nunito', sans-serif;
-    font-family: 'Oswald', sans-serif;
-    font-family: 'Poppins', sans-serif;
-    font-family: 'Rubik', sans-serif;
-    font-family: 'Satisfy', cursive;
-    font-family: 'Source Code Pro', monospace;
-    font-family: 'Ubuntu', sans-serif;
-    
+
+
+@media (max-width:900px) {
+
+ 
+    .map-container iframe {
+        width: 500px;
+        height: 400px;
+    }
 }
+
+/* collections  */
+
+@media (max-width:460px) {
+    .container {
+        width: 350px !important;
+    }
+
+    .map-container iframe {
+        width: 330px;
+        height: 250px;
+    }
+
+}
+
+

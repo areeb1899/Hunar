@@ -5,13 +5,17 @@
         href="https://fonts.googleapis.com/css2?family=Cairo&family=Nunito&family=Oswald&family=Poppins:ital,wght@0,100;1,100&family=Rubik&family=Source+Code+Pro:ital,wght@1,300&family=Ubuntu&display=swap"
         rel="stylesheet">
 
+    <link rel="stylesheet" href="/3d.css">
+    <link rel="stylesheet" href="/testimonial.css">
+
+
+
     <section class="features">
         <div class="image-section">
-            <img src="assets/image-1.jpg" width="100%" height="700px" alt="">
+            <img src="https://uwm.edu/news/wp-content/uploads/sites/41/2017/02/GraduateToxicDye_RM2017_1500x650.jpg"
+                alt="">
             <p class="launching-para">We are launching soon!</p>
         </div>
-
-
 
         <!-- carousel  -->
         <div class="container mt-1">
@@ -53,11 +57,11 @@
 
         <div class="container overflow-hidden bg-secondary-subtle text-center my-3">
             <div class="row gx-5">
-                <div class="col">
-                    <div class="p-3"><img src="assets/image-2.jpg" class="img-fluid w-100" alt=""></div>
+                <div class="col-md">
+                    <div class="p-3"><img src="assets/image-2.jpg" class="img-fluid w-50" alt=""></div>
                 </div>
-                <div class="col">
-                    <div class="p-3"> <img src="assets/image-3.jpg" class="img-fluid w-100" alt=""></div>
+                <div class="col-md">
+                    <div class="p-3"> <img src="assets/image-3.jpg" class="img-fluid w-50" alt=""></div>
                 </div>
             </div>
         </div>
@@ -66,7 +70,9 @@
 
         <!-- cards carousel align in same block  -->
 
-        <div id="imageCardCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div id="imageCardCarousel" class="carousel slide border border-2 p-2 m-2" data-bs-ride="carousel">
+            <h1 class="text-center m-5">Different Categories</h1>
+
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <div class="container">
@@ -121,25 +127,92 @@
                     </div>
                 </div>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#imageCardCarousel"
-                data-bs-slide="prev">
+            <button class="carousel-control-prev bg-dark h-25" type="button" style="top: 50%; width: 1.5rem;"
+                data-bs-target="#imageCardCarousel" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
             </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#imageCardCarousel"
-                data-bs-slide="next">
+            <button class="carousel-control-next bg-dark h-25" type="button" style="top: 50%; width: 1.5rem;"
+                data-bs-target="#imageCardCarousel" data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>
         </div>
 
+        <!-- 3d carousel  -->
+        <div class="threeD_carousel mt-2">
+            <input type="radio" name="position" />
+            <input type="radio" name="position" />
+            <input type="radio" name="position" checked />
+            <input type="radio" name="position" />
+            <input type="radio" name="position" />
+            <main id="carousel">
+                <div class="item"><img width="100%" src="/assets/little-image3.jpg" alt=""></div>
+                <div class="item"><img width="100%" src="/assets/little-image4.jpg" alt=""></div>
+                <div class="item"><img width="100%" src="/assets/little-image5.jpg" alt=""></div>
+                <div class="item"><img width="100%" src="/assets/little-image6.jpg" alt=""></div>
+                <div class="item"><img width="100%" src="/assets/little-image8.jpg" alt=""></div>
+            </main>
+
+        </div>
 
 
-       
-       
+
+        <!-- testimonial  -->
+        <div class="testimonial">
+            <div class="container">
+                <h1 class="text-center m-5">Testimonial</h1>
+                <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="testimonial-content">
+                                <img src="/assets/testimonial1.jpg" alt="Customer 1" class="testimonial-image">
+                                <p>Luxurious fabric, soft against the skin. High-quality material, <br> providing
+                                    ultimate comfort. Rich texture, a blend of style and comfort.</p>
+                                <p>John</p>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="testimonial-content">
+                                <img src="/assets/testimonial2.jpg" alt="Customer 2" class="testimonial-image">
+                                <p>Perfect fit, enhancing comfort and style. Tailored to perfection, <br> ensuring
+                                    confidence with every step. Exceptional fitting, pure satisfaction.</p>
+                                <p>Kate</p>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="testimonial-content">
+                                <img src="/assets/testimonial3.jpg" alt="Customer 3" class="testimonial-image">
+                                <p>Affordable prices without compromising quality. Great value for money.
+                                    Budget-friendly options <br> with top-notch quality. Exceptional deals for
+                                    exceptional products.</p>
+                                <p>Henry</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button style="top: 30%;" class="carousel-control-prev bg-dark h-25" type="button"
+                        data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button style="top: 30%;" class="carousel-control-next bg-dark h-25" type="button"
+                        data-bs-target="#testimonialCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- video carousel  -->
+
+
+
+
+
     </section>
 
-    
+
     <!-- clicking on each card redirects to listing route  -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {

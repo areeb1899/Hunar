@@ -3,23 +3,24 @@ const app = express(); // Create an Express application
 const path = require('path'); // Import the path module
 const ejsMate = require('ejs-mate'); // Import the ejs-mate module
 const methodOverride = require('method-override'); // Import the method-override module
-const flash=require('connect-flash');
-const session=require('express-session');
-const User=require('./models/User');
+const flash = require('connect-flash');
+const session = require('express-session');
+const { NotFoundError } = require('./core/APIerror')
+const User = require('./models/User');
 const passport = require('passport');
-const LocalStrategy=require('passport-local');
-const MongoStore=require('connect-mongo');
+const LocalStrategy = require('passport-local');
+const GoogleStrategy = require('passport-google-oauth20');
+const MongoStore = require('connect-mongo');
 
-
-const store=MongoStore.create({
-    mongoUrl:process.env.MONGO_LOCAL_DATABASE_URL,
+const store = MongoStore.create({
+    mongoUrl: process.env.MONGO_DATABASE_URL,
     touchAfter: 24 * 3600, // time period in seconds
     autoRemove: 'native',
     ttl: 14 * 24 * 60 * 60
 })
 
 const sessionConfig = {
-    store:store,
+    store: store,
     secret: process.env.SECRET,
     resave: false,
     saveUninitialized: true,
@@ -40,17 +41,35 @@ app.use(express.json({ parameterLimit: 5000, limit: '10mb' })); // Parse incomin
 app.use(methodOverride('_method')); // Enable support for overriding HTTP methods
 app.use(session(sessionConfig)); //express sessions
 app.use(flash()); //flash messages and to use flash we need to establish express session
-
-
-//Routes
-const userRoute=require('./routes/userRoute');
-const productRoute=require('./routes/airbnb');
-
-passport.use(new LocalStrategy(User.authenticate()));
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
 app.use(passport.initialize());
 app.use(passport.session()); //for persistent login
+
+//Routes
+const userRoute = require('./routes/userRoute');
+const productRoute = require('./routes/hunar');
+const paymentAPI = require('./core/payment');
+const reviewRoutes = require('./routes/reviewRoutes')
+
+
+
+//authentication
+passport.use("local", new LocalStrategy(User.authenticate()));
+
+
+//google authenctication
+passport.use(new GoogleStrategy({
+    clientID: process.env.GOOGLE_CLIENT_ID,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    callbackURL: "http://localhost:4000/auth/google/listing"
+  },
+  function(require, accessToken, refreshToken, profile, done) {
+    console.log(profile)
+    return done(null,profile)
+  }
+));
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 
 
@@ -71,27 +90,47 @@ app.use((req, res, next) => {
 
 app.use(productRoute); //using the router function in route folder
 app.use(userRoute);
+app.use(paymentAPI);
+app.use(reviewRoutes);
 
 
 // additional routes 
 
+
 //about us route
-app.get('/about',(req,res)=>{
+
+app.get('/about', (req, res) => {
     res.render('products/aboutUs');
 })
 
 //contact us
-app.get('/contact',(req,res)=>{
+app.get('/contact', (req, res) => {
     res.render('products/contactUs')
 })
 
+app.post('/contact',(req,res)=>{
+    req.flash('success','Thank you for contacting! Your response has been submitted')
+    res.redirect('/contact');
+
+})
+
 //shipping & returns
-app.get('/shipping-and-returns',(req,res)=>{
+app.get('/shipping-and-returns', (req, res) => {
     res.render('products/shipping&returns')
 })
 
+
 //FAQs
-app.get('/faqs',(req,res)=>{
+app.get('/faqs', (req, res) => {
     res.render('products/faqs')
+})
+
+app.all('*', (req, res, next) => next(new NotFoundError('You are requesting a wrong path.')))
+
+
+// custom error handling middleware
+app.use((error, req, res, next) => {
+    const { status = 500, message = "Internal Server Error" } = error
+    res.status(status).render('error', { message,status });
 })
 module.exports = app; // Export the Express application

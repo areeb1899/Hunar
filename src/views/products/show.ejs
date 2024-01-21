@@ -1,36 +1,132 @@
 <% layout('layout/boilerplate') -%>
 
-    <div class="container mt-5">
-        <div class="card custom-card mx-auto" style="width: 400px;">
-            <!-- Adjusted width to 200px -->
-            <img src="<%=listing.image%>" class="card-img-top p-3 mx-auto" alt="..."
-                style="height: 300px; object-fit: cover; width: 200px;">
-            <!-- Adjusted width to 200px -->
-            <div class="card-body">
-                <h6 class="card-title">
-                    <%=listing.name%>
-                </h6>
-                <p class="card-text">
-                    <%=listing.description %>
-                </p>
-                <p class="card-text">
-                    <b>&#8377;<%=listing.price %></b>
-                </p>
-                <% if (currentUser && listing.author.equals(currentUser._id)) { %>
-                    <a href="/listing/<%=listing._id%>/edit" class="btn btn-md btn-secondary">Edit</a>
-                    <form class="d-inline-block" action="/listing/<%=listing._id%>?_method=DELETE" method="post">
-                        <button type="submit" class="btn btn-md btn-danger m-3">Delete</button>
-                    </form>
-                   
-                    <% } else { %>
-                        <a href="#" class="btn btn-md bg-info btn-sm">Buy Now</a>
-                        <!-- Add to cart feature  -->
-                        <form class="d-inline-block" action="/cart/<%=listing._id%>" method="post">
-                            <button class="btn btn-sm btn-success">Add to Cart</button>
+    <link rel="stylesheet" href="/star.css">
+
+    <section class="row mt-5 ">
+
+
+        <div class="col-lg-6">
+            <div class="card custom-card mx-auto" style="width: 400px;">
+                <!-- Adjusted width to 200px -->
+                <img src="<%=listing.image%>" class="card-img-top p-3 mx-auto" alt="..."
+                    style="height: 300px; object-fit: cover; width: 200px;">
+                <!-- Adjusted width to 200px -->
+                <div class="card-body">
+                    <h6 class="card-title fw-bold">
+                        <%=listing.name%>
+                    </h6>
+                    <p class="card-text">
+                        <%=listing.description %>
+                    </p>
+                    <p class="card-text amount">
+                        <b>&#8377; <%=listing.price %></b>
+                    </p>
+                    <% if (currentUser && listing.author.equals(currentUser._id)) { %>
+                        <a href="/listing/<%=listing._id%>/edit" class="btn btn-md btn-secondary">Edit</a>
+                        <form class="d-inline-block" action="/listing/<%=listing._id%>?_method=DELETE" method="post">
+                            <button type="submit" class="btn btn-md btn-danger m-3">Delete</button>
                         </form>
-                        <% }%>
+
+                        <% } else { %>
+                            <a href="#" id="buyBtn" class="btn btn-md bg-info btn-sm">Buy Now</a>
+                            <!-- Add to cart feature  -->
+                            <form class="d-inline-block" action="/cart/<%=listing._id%>" method="post">
+                                <button class="btn btn-sm btn-success">Add to Cart</button>
+                            </form>
+                            <% }%>
 
 
+                </div>
             </div>
         </div>
-    </div>
+        <!-- Reviews  -->
+        <div class="col-lg-5 col-md-6 m-4">
+            <div class="mb-3">
+                <h3>Leave a Review</h3>
+                <form action="/listing/<%=listing._id%>/reviews" method="post">
+                    <div>
+                        <fieldset class="starability-basic">
+
+                            <input type="radio" id="first-rate1" name="rating" value="1" checked />
+                            <label for="first-rate1" title="Terrible">1 star</label>
+                            <input type="radio" id="first-rate2" name="rating" value="2" />
+                            <label for="first-rate2" title="Not good">2 stars</label>
+                            <input type="radio" id="first-rate3" name="rating" value="3" />
+                            <label for="first-rate3" title="Average">3 stars</label>
+                            <input type="radio" id="first-rate4" name="rating" value="4" />
+                            <label for="first-rate4" title="Very good">4 stars</label>
+                            <input type="radio" id="first-rate5" name="rating" value="5" />
+                            <label for="first-rate5" title="Amazing">5 stars</label>
+                            
+                        </fieldset>
+                    </div>
+                    <div class="mb-3 col-6">
+                        <label class="form-label" for="comment">Comment</label>
+                        <textarea class="form-control" name="comment" id="comment" cols="30" rows="3"></textarea>
+                    </div>
+                    <button class="btn btn-sm btn-success">Submit</button>
+                </form>
+            </div>
+            <div class="my-3 col-md-9 col-6 col-sm-3 ">
+                <% for(let review of listing.reviews){ %>
+                    <div class="card mb-2">
+                        <div class="card-body">
+                            <p class="starability-result" data-rating="<%= review.rating %>">
+                                Rated: <%= review.rating %> stars
+                            </p>
+                            <p>
+                                <%=review.comment%>
+                            </p>
+                            <% const secondsAgo=Math.floor((new Date() - new Date(review.createdAt)) / 1000); %>
+                                <% const hoursAgo=Math.floor(secondsAgo / 3600); %>
+                                    <% const minutesAgo=Math.floor(secondsAgo / 60); %>
+                                        <% if (secondsAgo <=1) { %>
+                                            <h6 class="text-secondary">
+                                                1 second ago
+                                            </h6>
+                                            <% } else if (secondsAgo < 60) { %>
+                                                <h6 class="text-secondary">
+                                                    <%= secondsAgo %> seconds ago
+                                                </h6>
+                                                <% } else if (minutesAgo <=1) { %>
+                                                    <h6 class="text-secondary">
+                                                        1 minute ago
+                                                    </h6>
+                                                    <% } else if (minutesAgo < 60) { %>
+                                                        <h6 class="text-secondary">
+                                                            <%= minutesAgo %> minutes ago
+                                                        </h6>
+                                                        <% } else if (hoursAgo <=1) { %>
+                                                            <h6 class="text-secondary">
+                                                                1 hour ago
+                                                            </h6>
+                                                            <% } else if (hoursAgo < 24) { %>
+                                                                <h6 class="text-secondary">
+                                                                    <%= hoursAgo %> hours ago
+                                                                </h6>
+                                                                <% } else if (hoursAgo < 168) { %>
+                                                                    <h6 class="text-secondary">
+                                                                        <%= Math.floor(hoursAgo / 24) %>
+                                                                            days ago
+                                                                    </h6>
+                                                                    <% } else { %>
+                                                                        <h6 class="text-secondary">
+                                                                            <%= Math.floor(hoursAgo / 168) %>
+                                                                                weeks ago
+                                                                        </h6>
+                                                                        <% } %>
+
+                                                                            <form
+                                                                                action="/listing/<%=listing._id%>/reviews/<%=review._id %>?_method=DELETE"
+                                                                                method="POST">
+                                                                                <button
+                                                                                    class="btn btn-danger btn-sm">DELETE</button>
+                                                                            </form>
+                        </div>
+                    </div>
+                    <% } %>
+            </div>
+        </div>
+    </section>
+
+    <script src="/js/paymentFile.js"></script>

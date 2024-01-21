@@ -13,6 +13,7 @@ const cartSchema=new Schema({
   }
 })
 const userSchema=new Schema({
+  name:String,
   email:String,
   role: {
     type: String,
