@@ -4,6 +4,8 @@ const Review = require('../models/Review');
 const Listing = require('../models/Product');
 const catchAsync = require('../core/catchAsync');
 
+
+//posting the reviews
 router.post('/listing/:id/reviews', catchAsync(async (req, res) => {
     const { id } = req.params;
     const { rating, comment } = req.body;
@@ -16,7 +18,7 @@ router.post('/listing/:id/reviews', catchAsync(async (req, res) => {
     res.redirect(`/listing/${id}`);
 }))
 
-
+//deleting the reviews
 router.delete('/listing/:listingId/reviews/:reviewId', catchAsync(async (req, res) => {
     const { listingId, reviewId } = req.params;
     try {

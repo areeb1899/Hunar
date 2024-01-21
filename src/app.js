@@ -9,7 +9,7 @@ const { NotFoundError } = require('./core/APIerror')
 const User = require('./models/User');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
-const GoogleStrategy = require('passport-google-oauth20');
+const GoogleStrategy = require('passport-google-oauth2')
 const MongoStore = require('connect-mongo');
 
 const store = MongoStore.create({

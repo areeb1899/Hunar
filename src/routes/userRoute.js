@@ -7,12 +7,16 @@ const Listing = require('../models/Product');
 const { isLoggedIn } = require('../middleware/middlewares');
 const catchAsync = require('../core/catchAsync')
 
+
+//registration secret for signing up as a seller
 const registration_secret = process.env.REGISTRATION_SECRET;
 
+//register page
 router.get('/register', (req, res) => {
     res.render('user/signup');
 })
 
+//register as a seller or buyer
 router.post('/register', catchAsync(async (req, res) => {
     const { name, username, email, password, role, secret } = req.body;
 
@@ -33,37 +37,13 @@ router.post('/register', catchAsync(async (req, res) => {
 }));
 
 
-
-// Delete user account
-router.delete('/users/:userId', isLoggedIn, catchAsync(async (req, res) => {
-    const { userId } = req.params;
-    console.log(userId)
-    // Ensure the logged-in user matches the target user
-    if (req.user._id.toString() === userId) {
-
-
-        await User.findByIdAndDelete(userId);
-
-        req.flash('success', 'Your account has been deleted successfully.');
-        // req.logout(); // Log out the user after account deletion
-        res.redirect('/login'); // Redirect to login or home page
-
-    }
-    req.flash('error', 'You are not authorized to delete this account.');
-    return res.redirect('/register');
-
-
-    // Find the user and delete the account
-
-}));
-
-
-
-
+//login page 
 router.get('/login', (req, res) => {
     res.render('user/login');
 })
 
+
+//login through passport-local 
 router.post('/login', passport.authenticate('local', { failureRedirect: '/login', failureFlash: true }),
     (req, res) => {
         req.flash('success', 'You are now logged in, welcome again!');
@@ -71,6 +51,8 @@ router.post('/login', passport.authenticate('local', { failureRedirect: '/login'
 
     })
 
+
+//logout the user
 router.get('/logout', (req, res) => {
     req.logout((err) => {
         if (err) {
@@ -85,21 +67,20 @@ router.get('/logout', (req, res) => {
 
 
 //google authentication route
+//login through passport-google-oauth2
 
 router.get('/auth/google', passport.authenticate('google', {
-    scope: ['profile', 'email']
+    scope: ['profile', 'email'] //what we want from the user
 }))
 
 router.get('/auth/google/listing', passport.authenticate('google', {
-    successRedirect: '/listing',
-    failureRedirect: '/login'
+    successRedirect: '/listing', //success route
+    failureRedirect: '/login' //failure route
 }))
 
 
 
 // Cart Routes 
-
-
 // Adding items to cart 
 router.post('/cart/:listingId', isLoggedIn, catchAsync(async (req, res) => {
     const { listingId } = req.params;
@@ -107,7 +88,7 @@ router.post('/cart/:listingId', isLoggedIn, catchAsync(async (req, res) => {
     const currentUser = await User.findById(req.user._id);
     const existingCartItem = currentUser.cart.find((item) => item.listingId.equals(listing._id));
     if (existingCartItem) {
-        existingCartItem.qty++
+        existingCartItem.qty++ //increase the qty of the same item
     } else {
         currentUser.cart.push({ listingId: listing._id, name: listing.name, price: listing.price, image: listing.image });
 
@@ -126,9 +107,7 @@ router.delete('/cart/:listingId', isLoggedIn, catchAsync(async (req, res) => {
     const currentUser = await User.findById(req.user._id);
 
     // Remove the item from the user's cart
-    currentUser.cart = currentUser.cart.filter(item => !item.listingId.equals(listingId));
-
-    await currentUser.save();
+    currentUser.cart = currentUser.cart.filter(item => !item.listingId.equals(listingId));    await currentUser.save();
     req.flash('success', 'Item removed from cart successfully');
     res.redirect('/cart');
 }));
@@ -138,21 +117,36 @@ router.delete('/cart/:listingId', isLoggedIn, catchAsync(async (req, res) => {
 router.get('/cart', isLoggedIn, catchAsync(async (req, res) => {
     const userId = req.user._id;
     const user = await User.findById(userId);
-
     const totalCartAmount = user.cart.reduce((total, item) => total + item.price * item.qty, 0);
-    // console.log(totalCartAmount)
-
     res.render('user/cart', { cart: user.cart, totalCartAmount: totalCartAmount })
 
 }));
 
 
-
+//profile page 
 router.get('/profile', async (req, res) => {
     const userId = req.user._id
     const user = await User.findById(userId);
     const totalCartAmount = user.cart.reduce((total, item) => total + item.price * item.qty, 0);
     res.render('user/profile', { cart: user.cart, totalCartAmount: totalCartAmount })
 })
+
+// Delete user account
+router.delete('/users/:userId', isLoggedIn, catchAsync(async (req, res) => {
+    const { userId } = req.params;
+    //checking if the user is same as logged in user
+    if (req.user._id.toString() === userId) {
+        await User.findByIdAndDelete(userId);
+
+        req.flash('success', 'Your account has been deleted successfully.');
+        res.redirect('/'); // Redirect to login after deleting the account
+
+    }
+
+    //if fails to match the criteria 
+    req.flash('error', 'You are not authorized to delete this account.');
+    return res.redirect('/register');
+}));
+
 
 module.exports = router;
