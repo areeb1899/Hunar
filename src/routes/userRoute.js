@@ -29,7 +29,7 @@ router.post('/register', catchAsync(async (req, res) => {
         res.redirect('/login');
 
     }
-    req.flash('error', 'Invalid secret for seller registration.');
+    req.flash('error', 'Invalid password for seller registration.');
     return res.redirect('/register');
 
 
