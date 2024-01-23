@@ -55,16 +55,26 @@
                                     <img src="<%= listing.image %>" class="card-img-top mx-auto m-2" alt="image"
                                         style="height: 400px; object-fit: cover; width: 100%;">
                                 </a>
+
                                 <div class="card-body">
-                                    <h6 class="card-title text-dark">
-                                        <%=listing.name%>, In
-                                    </h6>
+                                    
+                                    <h6 class="card-title d-flex justify-content-between align-items-center">
+                                        <span><%= listing.name %></span>
+                                        <span class="btn like-button bg-light rounded-circle" listing-id="<%=listing.id%>" style="box-shadow:0px 1px 1px rgba(0,0,0,0.26)">
+                                          <% if(currentUser && currentUser.wishlist.includes(listing.id)){ %> 
+                                            <i class="fa-solid fa-heart text-danger"></i>
+                                          <% }else {%>
+                                            <i class="fa-regular fa-heart"></i>
+                                          <% } %>  
+                                        </span>
+                                      </h6>
                                     <p class="card-text text-secondary">
                                         <%=listing.description.substring(0,70) %>...
                                     </p>
-                                    <p class="card-text">
+                                    <p class="card-text text-dark">
                                         <b>&#8377;<%=listing.price %></b>
                                     </p>
+                                    
                                 </div>
                                 <div class="d-flex">
                                     <% const secondsAgo=Math.floor((new Date() - new Date(listing.createdAt)) / 1000);
@@ -111,3 +121,6 @@
                 </div>
                 <% } %>
     </section>
+
+
+<script src="/js/common.js"></script>

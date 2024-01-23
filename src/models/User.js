@@ -11,7 +11,8 @@ const cartSchema=new Schema({
     type:Number,
     default:1
   }
-})
+});
+
 const userSchema=new Schema({
   name:String,
   email:String,
@@ -19,7 +20,11 @@ const userSchema=new Schema({
     type: String,
     enum: ['seller', 'buyer', 'admin']
   },
-  cart:[cartSchema]
+  cart:[cartSchema],
+  wishlist:[{
+    type:mongoose.Schema.Types.ObjectId,
+    ref:'Listing'
+}]
 
 },{versionKey:false,timestamps:true});
 

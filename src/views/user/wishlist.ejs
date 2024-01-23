@@ -1,0 +1,33 @@
+<% layout('layout/boilerplate')-%>
+
+
+
+
+<div class="col-lg-8">
+    <% for (let likeItem of user.wishlist) { %>
+      <div class="card mb-3">
+        <div class="row g-0">
+          <div class="col-md-3">
+            <a href="/listing/<%= likeItem.listingId %>">
+              <img src="<%= likeItem.image %>" class="img-fluid rounded-start" alt="...">
+            </a>
+          </div>
+          <div class="col-md-9">
+            <div class="card-body">
+              <h5 class="card-title">
+                <%= likeItem.name %>
+              </h5>
+              <p class="card-text">Price: &#8377;<%= likeItem.price %>
+              </p>
+              <p class="card-text">Quantity: <%= likeItem.qty %>
+              </p>
+              <form action="/cart/<%= likeItem.listingId %>?_method=DELETE" method="POST">
+                <button type="submit" class="btn btn-danger">Remove</button>
+              </form>
+             
+            </div>
+          </div>
+        </div>
+      </div>
+      <% } %>
+  </div>

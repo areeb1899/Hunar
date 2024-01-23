@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
 })
 
 //showing the listings
-router.get('/listing',isLoggedIn, catchAsync(async (req, res) => {
+router.get('/listing', catchAsync(async (req, res) => {
     const listings = await Listing.find({});
     // await seedProducts();
     res.render('products/listing', { listings });
@@ -55,17 +55,19 @@ router.patch('/listing/:listingId', isLoggedIn, catchAsync(async (req, res) => {
 //edit listing
 router.get('/listing/:listingId/edit', isLoggedIn, isProductAuthor, catchAsync(async (req, res) => {
     const { listingId } = req.params;
-    const listing = await Listing.findByIdAndUpdate(listingId);
+    const listing = await Listing.findById(listingId);
     res.render('products/edit', { listing });
 }));
 
 
 //update listing
 router.patch('/listing/:listingId', isLoggedIn, isProductAuthor, catchAsync(async (req, res) => {
-    const { listingId } = req.params;
-    const { name, description, image, price } = req.body;
-    await Listing.findByIdAndUpdate(listingId, { name, description, image, price });
-    res.redirect('/listing');
+    const { listingId } = req.params
+    console.log(listingId)
+    const { name, price, description, image } = req.body;
+    await Product.findByIdAndUpdate(listingId, { name, price, description, image });
+    res.redirect(`/listing/${listingId}`);
+
 }));
 
 //delete listing

@@ -211,3 +211,11 @@ footer a {
 }
 
 
+/* like item  */
+.heart{
+    color:red;
+}
+
+.bi.bi-heart-fill{
+    color:red;
+}

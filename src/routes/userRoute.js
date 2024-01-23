@@ -4,7 +4,7 @@ const passport = require('passport');
 const User = require('../models/User');
 const mongoose = require('mongoose')
 const Listing = require('../models/Product');
-const { isLoggedIn } = require('../middleware/middlewares');
+const { isLoggedIn, redirectToHomeIfLoggedIn } = require('../middleware/middlewares');
 const catchAsync = require('../core/catchAsync')
 
 
@@ -12,7 +12,7 @@ const catchAsync = require('../core/catchAsync')
 const registration_secret = process.env.REGISTRATION_SECRET;
 
 //register page
-router.get('/register', (req, res) => {
+router.get('/register', redirectToHomeIfLoggedIn,(req, res) => {
     res.render('user/signup');
 })
 
@@ -38,7 +38,7 @@ router.post('/register', catchAsync(async (req, res) => {
 
 
 //login page 
-router.get('/login', (req, res) => {
+router.get('/login', redirectToHomeIfLoggedIn, (req, res) => {
     res.render('user/login');
 })
 
@@ -48,6 +48,8 @@ router.post('/login', passport.authenticate('local', { failureRedirect: '/login'
     (req, res) => {
         req.flash('success', 'You are now logged in, welcome again!');
         res.redirect('/')
+
+
 
     })
 
@@ -81,6 +83,16 @@ router.get('/auth/google/listing', passport.authenticate('google', {
 
 
 // Cart Routes 
+// cart page 
+router.get('/cart', isLoggedIn, catchAsync(async (req, res) => {
+    const userId = req.user._id;
+    const user = await User.findById(userId);
+    const totalCartAmount = user.cart.reduce((total, item) => total + item.price * item.qty, 0);
+    res.render('user/cart', { cart: user.cart, totalCartAmount: totalCartAmount })
+
+}));
+
+
 // Adding items to cart 
 router.post('/cart/:listingId', isLoggedIn, catchAsync(async (req, res) => {
     const { listingId } = req.params;
@@ -107,20 +119,13 @@ router.delete('/cart/:listingId', isLoggedIn, catchAsync(async (req, res) => {
     const currentUser = await User.findById(req.user._id);
 
     // Remove the item from the user's cart
-    currentUser.cart = currentUser.cart.filter(item => !item.listingId.equals(listingId));    await currentUser.save();
+    currentUser.cart = currentUser.cart.filter(item => !item.listingId.equals(listingId)); await currentUser.save();
     req.flash('success', 'Item removed from cart successfully');
     res.redirect('/cart');
 }));
 
 
-// cart page 
-router.get('/cart', isLoggedIn, catchAsync(async (req, res) => {
-    const userId = req.user._id;
-    const user = await User.findById(userId);
-    const totalCartAmount = user.cart.reduce((total, item) => total + item.price * item.qty, 0);
-    res.render('user/cart', { cart: user.cart, totalCartAmount: totalCartAmount })
 
-}));
 
 
 //profile page 
@@ -147,6 +152,7 @@ router.delete('/users/:userId', isLoggedIn, catchAsync(async (req, res) => {
     req.flash('error', 'You are not authorized to delete this account.');
     return res.redirect('/register');
 }));
+
 
 
 module.exports = router;

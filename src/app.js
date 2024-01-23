@@ -44,14 +44,12 @@ app.use(flash()); //flash messages and to use flash we need to establish express
 app.use(passport.initialize());
 app.use(passport.session()); //for persistent login
 
-//Routes
+//Routes & API
 const userRoute = require('./routes/userRoute');
 const productRoute = require('./routes/hunar');
 const paymentAPI = require('./core/payment');
 const reviewRoutes = require('./routes/reviewRoutes')
-
-
-
+const productLikeAPI=require('./routes/api/productLike')
 //authentication
 passport.use("local", new LocalStrategy(User.authenticate()));
 
@@ -92,8 +90,7 @@ app.use(productRoute); //using the router function in route folder
 app.use(userRoute);
 app.use(paymentAPI);
 app.use(reviewRoutes);
-
-
+app.use(productLikeAPI); //wishlist API
 // additional routes 
 
 
