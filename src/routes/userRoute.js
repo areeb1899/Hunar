@@ -67,21 +67,6 @@ router.get('/logout', (req, res) => {
 })
 
 
-
-//google authentication route
-//login through passport-google-oauth2
-
-router.get('/auth/google', passport.authenticate('google', {
-    scope: ['profile', 'email'] //what we want from the user
-}))
-
-router.get('/auth/google/listing', passport.authenticate('google', {
-    successRedirect: '/listing', //success route
-    failureRedirect: '/login' //failure route
-}))
-
-
-
 // Cart Routes 
 // cart page 
 router.get('/cart', isLoggedIn, catchAsync(async (req, res) => {

@@ -9,7 +9,6 @@ const { NotFoundError } = require('./core/APIerror')
 const User = require('./models/User');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
-const GoogleStrategy = require('passport-google-oauth2')
 const MongoStore = require('connect-mongo');
 
 const store = MongoStore.create({
@@ -54,17 +53,6 @@ const productLikeAPI=require('./routes/api/productLike')
 passport.use("local", new LocalStrategy(User.authenticate()));
 
 
-//google authenctication
-passport.use(new GoogleStrategy({
-    clientID: process.env.GOOGLE_CLIENT_ID,
-    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: "http://localhost:4000/auth/google/listing"
-  },
-  function(require, accessToken, refreshToken, profile, done) {
-    console.log(profile)
-    return done(null,profile)
-  }
-));
 
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
