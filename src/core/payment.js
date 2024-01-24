@@ -50,11 +50,14 @@ router.post('/payment-verify', async (req, res) => {
     }
 
     const order = await Order.findById(razorpay_order_id)
+    
     // console.log(order);
     order.paymentStatus = true;
     order.save();
 
-    res.redirect('/listing');
+
+    req.flash('success','Your order has been successfully placed!')
+    res.redirect(`/listing`);
 })
 
 module.exports=router;

@@ -5,6 +5,7 @@ const buyBtn = document.querySelector('#buyBtn');
 buyBtn.addEventListener('click', (e) => {
     e.preventDefault();
     const amount = document.querySelector('.amount').innerText.split(' ').pop();
+    
     makePayment(amount);
 
 })
@@ -26,7 +27,7 @@ async function makePayment(amount) {
             "description": "Test Transaction",
             "image": "/assets/logo.png", //logo image
             "order_id": res.data.order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-            "callback_url": "http://localhost:4000/payment-verify",
+            "callback_url": `https://hunar.onrender.com/payment-verify`,
             "notes": {
                 "address": "Razorpay Corporate Office" //any address
             },
