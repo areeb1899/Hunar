@@ -16,7 +16,7 @@ router.post('/order', catchAsync(async (req, res) => {
     console.log(amount);
 
     const options = {
-        amount: amount*100,  // amount in the smallest currency unit
+        amount: amount * 100,  // amount in the smallest currency unit
         currency: "INR"
     };
     instance.orders.create(options, async function (err, order) {
@@ -53,8 +53,8 @@ router.post('/payment-verify', async (req, res) => {
     // console.log(order);
     order.paymentStatus = true;
     order.save();
-
+    req.flash('success', 'Your order has been placed successfully!')
     res.redirect('/listing');
 })
 
-module.exports=router;
+module.exports = router;
