@@ -3,6 +3,7 @@
     padding: 0;
     box-sizing: border-box;
 }
+
 /* loader  */
 
 /* Add this CSS to your existing stylesheet or create a new CSS file */
@@ -17,14 +18,15 @@
     align-items: center;
     justify-content: center;
     z-index: 1000;
-  }
-  
-  #preloader img {
-    width: 10rem; /* Adjust the size of your preloader spinner */
-  }
-  
+}
 
- /* ------  */
+#preloader img {
+    width: 10rem;
+    /* Adjust the size of your preloader spinner */
+}
+
+
+/* ------  */
 textarea {
     resize: none;
 }
@@ -65,7 +67,8 @@ nav {
 
 .navbar-nav .nav-link:hover,
 .navbar-nav .nav-link:hover i {
-  color: red !important; /* Use !important to ensure the styles override Bootstrap's default styles */
+    color: red !important;
+    /* Use !important to ensure the styles override Bootstrap's default styles */
 }
 
 
@@ -186,8 +189,6 @@ footer a {
 }
 
 
-
-
 /* Media queries  */
 @media (max-width: 650px) {
     .nav_links {
@@ -204,19 +205,25 @@ footer a {
         width: 300px;
         height: 200px;
     }
-    .launching-para{
-        font-size:1.5rem ;
+
+    .launching-para {
+        font-size: 1.5rem;
     }
+
+   
+
+   
 }
 
 
 @media (max-width:900px) {
 
- 
+
     .map-container iframe {
         width: 500px;
         height: 400px;
     }
+  
 }
 
 /* collections  */
@@ -230,9 +237,18 @@ footer a {
         width: 330px;
         height: 250px;
     }
-    .launching-para{
-        font-size:1.5rem ;
+
+    .launching-para {
+        font-size: 1.5rem;
     }
+ 
+
+ 
 
 }
+
+
+
+
+
 

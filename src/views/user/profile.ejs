@@ -1,6 +1,6 @@
 <% layout('layout/boilerPlate')-%>
 
-  <div class="container profile-container mt-5">
+  <div class="container profile-container m-4">
     <div class="text-center">
       <h2>
         <%= currentUser.name.charAt(0).toUpperCase() + currentUser.name.slice(1) %>
@@ -74,20 +74,25 @@
           <h3> Total Cart Amount: &#8377; <%=totalCartAmount %>
           </h3>
         </div>
-        
+
       </div>
 
 
 
-     
-      <div class="col-lg-2">
+
+      <div class="col-lg-2 d-flex align-items-center justify-content-center">
         <div class="card">
-          <div class="card-body">
-            <h5 class="card-title text-center">Delete Your Account</h5>
+          <div class="card-body text-center">
+            <h5 class="card-title">Delete Your Account</h5>
             <form action="/users/<%= currentUser._id %>?_method=DELETE" method="post">
-              <button class="btn btn-lg btn-danger align-items-center"
-                onclick="return confirm('Are you sure you want to delete your account?')"><i class="bi bi-trash3"></i></button>
+              <button class="btn btn-lg btn-danger"
+                onclick="return confirm('Are you sure you want to delete your account?')">
+                <i class="bi bi-trash3"></i>
+              </button>
             </form>
           </div>
         </div>
       </div>
+
+    </div>
+  </div>
