@@ -26,7 +26,7 @@ router.get('/listing/new', isLoggedIn, catchAsync((req, res) => {
 }));
 
 // show single listing 
-router.get('/listing/:listingId', isLoggedIn, async (req, res) => {
+router.get('/listing/:listingId', async (req, res) => {
     const { listingId } = req.params;
     const listing = await Listing.findById(listingId).populate('reviews');
     if (!listing) {
