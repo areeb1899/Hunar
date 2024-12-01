@@ -49,6 +49,7 @@ const productRoute = require('./routes/hunar');
 const paymentAPI = require('./core/payment');
 const reviewRoutes = require('./routes/reviewRoutes')
 const productLikeAPI=require('./routes/api/productLike')
+
 //authentication
 passport.use("local", new LocalStrategy(User.authenticate()));
 
@@ -118,4 +119,6 @@ app.use((error, req, res, next) => {
     const { status = 500, message = "Internal Server Error" } = error
     res.status(status).render('error', { message,status });
 })
+
+
 module.exports = app; // Export the Express application

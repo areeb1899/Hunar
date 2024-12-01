@@ -5,6 +5,7 @@ const User = require('../../models/User')
 
 
 
+
 router.post('/listing/:listingId/like', isLoggedIn, async (req, res) => {
     const { listingId } = req.params;
 
